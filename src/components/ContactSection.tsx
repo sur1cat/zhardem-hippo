@@ -75,9 +75,9 @@ const ContactSection = ({ onContactClick }: ContactSectionProps) => {
               <h3 className="text-xl font-semibold">Часы работы</h3>
             </div>
             <div className="space-y-2 opacity-90">
-              <p>Понедельник - Пятница: 8:00 - 20:00</p>
-              <p>Суббота: 9:00 - 16:00</p>
-              <p>Воскресенье: Выходной</p>
+              <p>Понедельник - Пятница: 08:00 - 20:00</p>
+              <p>Суббота: 09:00 - 17:00</p>
+              <p>Воскресенье: Закрыто</p>
             </div>
           </div>
 
@@ -86,10 +86,11 @@ const ContactSection = ({ onContactClick }: ContactSectionProps) => {
               <div className="bg-white/20 p-3 rounded-full">
                 <MapPin className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-semibold">Как нас найти</h3>
+              <h3 className="text-xl font-semibold">Наш адрес</h3>
             </div>
             <p className="opacity-90">
-              Позвоните нам, и мы подскажем удобное время для приёма и ответим на все ваши вопросы.
+              улица Шокана Валиханова 12<br />
+              Астана 010000, Казахстан
             </p>
           </div>
         </div>

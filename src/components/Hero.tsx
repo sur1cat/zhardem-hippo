@@ -10,12 +10,13 @@ const Hero = () => {
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-16 animate-fade-in">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            Качественная медицинская
-            <span className="text-medical-blue block">помощь для всей семьи</span>
+            Медицинский центр
+            <span className="text-medical-blue block">«ЖӘРДЕМ»</span>
           </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Опытные врачи, современное оборудование и индивидуальный подход к каждому пациенту. 
-            Записывайтесь на приём к лучшим специалистам города.
+          <p className="text-2xl font-semibold text-medical-green mb-4">!Болезням- STOP!</p>
+          <p className="text-xl text-gray-600 mb-8 max-w-4xl mx-auto">
+            Сеть медицинских центров полного цикла оздоровления с 2001 года. 
+            Врачи с учеными степенями и стажем до 45 лет. Оборудование производства Великобритании.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -44,16 +45,16 @@ const Hero = () => {
             <div className="bg-medical-blue/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
               <Users className="w-8 h-8 text-medical-blue" />
             </div>
-            <h3 className="text-3xl font-bold text-gray-900 mb-2">15+</h3>
-            <p className="text-gray-600">Опытных врачей</p>
+            <h3 className="text-3xl font-bold text-gray-900 mb-2">20+</h3>
+            <p className="text-gray-600">Квалифицированных врачей</p>
           </div>
           
           <div className="text-center bg-white/80 backdrop-blur-sm rounded-2xl p-6 card-shadow hover:card-shadow-hover transition-all duration-200">
             <div className="bg-medical-green/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
               <Star className="w-8 h-8 text-medical-green" />
             </div>
-            <h3 className="text-3xl font-bold text-gray-900 mb-2">47</h3>
-            <p className="text-gray-600">Лет опыта</p>
+            <h3 className="text-3xl font-bold text-gray-900 mb-2">23</h3>
+            <p className="text-gray-600">Года опыта</p>
           </div>
           
           <div className="text-center bg-white/80 backdrop-blur-sm rounded-2xl p-6 card-shadow hover:card-shadow-hover transition-all duration-200">

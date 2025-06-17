@@ -12,8 +12,8 @@ const Header = () => {
               <Heart className="w-6 h-6" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">МедЦентр</h1>
-              <p className="text-sm text-gray-600">Ваше здоровье - наш приоритет</p>
+              <h1 className="text-2xl font-bold text-gray-900">Жардем Астана</h1>
+              <p className="text-sm text-medical-blue font-medium">!Болезням- STOP!</p>
             </div>
           </div>
           

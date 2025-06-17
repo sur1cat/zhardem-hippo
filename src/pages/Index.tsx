@@ -125,6 +125,17 @@ const services: Service[] = [
     ]
   },
   {
+    id: "pediatrician-gastro",
+    title: "Детский гастроэнтеролог",
+    price: 12500,
+    category: "Детское здоровье",
+    doctors: [{
+      name: "Преснова Нина Михайловна",
+      experience: "более 47 лет (инфекционист, паразитолог)",
+      schedule: "Будние дни: 14:00-19:00"
+    }]
+  },
+  {
     id: "gastroenterologist",
     title: "Гастроэнтеролог",
     price: 9000,
@@ -167,6 +178,50 @@ const services: Service[] = [
       experience: "более 30 лет",
       schedule: "Среда: 15:00-18:00, Пятница: 11:00-13:00"
     }]
+  },
+  {
+    id: "dermatologist",
+    title: "Дерматолог",
+    price: 10000,
+    category: "Дерматология",
+    doctors: [{
+      name: "Врач-дерматолог",
+      experience: "более 15 лет",
+      schedule: "Вторник, четверг: 14:00-18:00"
+    }]
+  },
+  {
+    id: "ophthalmologist",
+    title: "Офтальмолог",
+    price: 8000,
+    category: "Офтальмология",
+    doctors: [{
+      name: "Врач-офтальмолог",
+      experience: "более 20 лет",
+      schedule: "Понедельник, среда, пятница: 9:00-15:00"
+    }]
+  },
+  {
+    id: "urologist",
+    title: "Уролог",
+    price: 12000,
+    category: "Урология",
+    doctors: [{
+      name: "Врач-уролог",
+      experience: "более 25 лет",
+      schedule: "Вторник, пятница: 16:00-19:00"
+    }]
+  },
+  {
+    id: "orthopedist",
+    title: "Ортопед-травматолог",
+    price: 12000,
+    category: "Ортопедия",
+    doctors: [{
+      name: "Врач-ортопед",
+      experience: "более 18 лет",
+      schedule: "Понедельник, четверг: 15:00-19:00"
+    }]
   }
 ];
 
@@ -189,14 +244,14 @@ const Index = () => {
       <Hero />
       
       {/* Services Section */}
-      <section className="py-16 px-4">
+      <section id="services" className="py-16 px-4">
         <div className="container mx-auto max-w-7xl">
           <div className="text-center mb-12 animate-fade-in">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Наши медицинские услуги
             </h2>
             <p className="text-xl text-gray-600 mb-8">
-              Квалифицированные специалисты готовы помочь вам
+              Квалифицированные специалисты с учеными степенями готовы помочь вам
             </p>
             
             {/* Category Filter */}
