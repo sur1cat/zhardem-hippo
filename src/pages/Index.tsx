@@ -244,24 +244,24 @@ const Index = () => {
       <Hero />
       
       {/* Services Section */}
-      <section id="services" className="py-16 px-4">
+      <section id="services" className="py-12 sm:py-16 px-4">
         <div className="container mx-auto max-w-7xl">
-          <div className="text-center mb-12 animate-fade-in">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-8 sm:mb-12 animate-fade-in">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
               Наши медицинские услуги
             </h2>
-            <p className="text-xl text-gray-600 mb-8">
+            <p className="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8 px-4">
               Квалифицированные специалисты с учеными степенями готовы помочь вам
             </p>
             
             {/* Category Filter */}
-            <div className="flex flex-wrap justify-center gap-2 mb-8">
+            <div className="flex flex-wrap justify-center gap-2 mb-6 sm:mb-8 px-4">
               {categories.map((category) => (
                 <Button
                   key={category}
                   variant={selectedCategory === category ? "default" : "outline"}
                   onClick={() => setSelectedCategory(category)}
-                  className="rounded-full transition-all duration-200 hover:scale-105"
+                  className="rounded-full transition-all duration-200 hover:scale-105 text-sm sm:text-base px-3 sm:px-4 py-2"
                 >
                   {category}
                 </Button>
@@ -270,7 +270,7 @@ const Index = () => {
           </div>
 
           {/* Services Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 auto-rows-fr">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 auto-rows-fr">
             {filteredServices.map((service, index) => (
               <div
                 key={service.id}
