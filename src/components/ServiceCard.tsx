@@ -12,7 +12,7 @@ interface ServiceCardProps {
 
 const ServiceCard = ({ service, onBookClick }: ServiceCardProps) => {
   return (
-    <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-white/90 backdrop-blur-sm border-0 card-shadow hover:card-shadow-hover">
+    <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-white/90 backdrop-blur-sm border-0 card-shadow hover:card-shadow-hover h-full flex flex-col">
       <CardHeader className="pb-4">
         <div className="flex justify-between items-start mb-3">
           <Badge variant="secondary" className="bg-medical-blue/10 text-medical-blue border-0">
@@ -24,25 +24,26 @@ const ServiceCard = ({ service, onBookClick }: ServiceCardProps) => {
           </div>
         </div>
         
-        <CardTitle className="text-2xl font-bold text-gray-900 group-hover:text-medical-blue transition-colors">
+        <CardTitle className="text-xl font-bold text-gray-900 group-hover:text-medical-blue transition-colors min-h-[3rem] flex items-center">
           {service.title}
         </CardTitle>
       </CardHeader>
       
-      <CardContent className="space-y-4">
-        {service.doctors.map((doctor, index) => (
-          <div key={index} className="bg-gray-50 rounded-xl p-4 space-y-2">
-            <div className="flex items-start gap-3">
+      <CardContent className="flex-1 space-y-3">
+        {service.doctors.length === 1 ? (
+          // Специальное отображение для одного врача
+          <div className="bg-gradient-to-r from-medical-blue/5 to-medical-green/5 rounded-xl p-4 border border-medical-blue/10">
+            <div className="flex items-start gap-3 mb-3">
               <div className="bg-medical-blue/10 p-2 rounded-full flex-shrink-0">
                 <User className="w-4 h-4 text-medical-blue" />
               </div>
               <div className="flex-1 min-w-0">
-                <h4 className="font-semibold text-gray-900 text-sm leading-tight">
-                  {doctor.name}
+                <h4 className="font-semibold text-gray-900 text-sm leading-tight mb-1">
+                  {service.doctors[0].name}
                 </h4>
-                <div className="flex items-center gap-1 mt-1">
+                <div className="flex items-center gap-1">
                   <Star className="w-3 h-3 text-yellow-500 fill-current" />
-                  <span className="text-xs text-gray-600">Стаж: {doctor.experience}</span>
+                  <span className="text-xs text-gray-600">Стаж: {service.doctors[0].experience}</span>
                 </div>
               </div>
             </div>
@@ -52,14 +53,45 @@ const ServiceCard = ({ service, onBookClick }: ServiceCardProps) => {
                 <Clock className="w-4 h-4 text-medical-green" />
               </div>
               <p className="text-sm text-gray-600 leading-tight">
-                {doctor.schedule}
+                {service.doctors[0].schedule}
               </p>
             </div>
           </div>
-        ))}
+        ) : (
+          // Отображение для нескольких врачей
+          <div className="space-y-3 max-h-48 overflow-y-auto">
+            {service.doctors.map((doctor, index) => (
+              <div key={index} className="bg-gray-50 rounded-xl p-3 space-y-2">
+                <div className="flex items-start gap-3">
+                  <div className="bg-medical-blue/10 p-2 rounded-full flex-shrink-0">
+                    <User className="w-4 h-4 text-medical-blue" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-gray-900 text-sm leading-tight">
+                      {doctor.name}
+                    </h4>
+                    <div className="flex items-center gap-1 mt-1">
+                      <Star className="w-3 h-3 text-yellow-500 fill-current" />
+                      <span className="text-xs text-gray-600">Стаж: {doctor.experience}</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <div className="bg-medical-green/10 p-2 rounded-full flex-shrink-0">
+                    <Clock className="w-4 h-4 text-medical-green" />
+                  </div>
+                  <p className="text-sm text-gray-600 leading-tight">
+                    {doctor.schedule}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </CardContent>
       
-      <CardFooter>
+      <CardFooter className="mt-auto">
         <Button 
           onClick={onBookClick}
           className="w-full bg-medical-green hover:bg-medical-green/90 text-white transition-all duration-200 hover:scale-105 group-hover:shadow-lg"
