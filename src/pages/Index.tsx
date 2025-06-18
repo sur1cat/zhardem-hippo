@@ -9,6 +9,7 @@ import Hero from "@/components/Hero";
 import ServiceCard from "@/components/ServiceCard";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import BookingDialog from "@/components/BookingDialog";
 
 export interface Doctor {
   name: string;
@@ -227,6 +228,7 @@ const services: Service[] = [
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("Все");
+  const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
   
   const categories = ["Все", ...Array.from(new Set(services.map(s => s.category)))];
   
@@ -235,13 +237,13 @@ const Index = () => {
     : services.filter(service => service.category === selectedCategory);
 
   const handleBookingClick = () => {
-    window.open("tel:+77012200036", "_self");
+    setIsBookingDialogOpen(true);
   };
 
   return (
     <div className="min-h-screen">
       <Header />
-      <Hero />
+      <Hero onBookingClick={handleBookingClick} />
       
       {/* Services Section */}
       <section id="services" className="py-12 sm:py-16 px-4">
@@ -286,6 +288,11 @@ const Index = () => {
 
       <ContactSection onContactClick={handleBookingClick} />
       <Footer />
+      
+      <BookingDialog 
+        open={isBookingDialogOpen} 
+        onOpenChange={setIsBookingDialogOpen} 
+      />
     </div>
   );
 };

@@ -2,7 +2,11 @@
 import { Calendar, Clock, Star, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const Hero = () => {
+interface HeroProps {
+  onBookingClick?: () => void;
+}
+
+const Hero = ({ onBookingClick }: HeroProps) => {
   return (
     <section className="relative py-8 sm:py-16 lg:py-20 px-4 medical-gradient overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-medical-blue/5 to-medical-green/5"></div>
@@ -23,7 +27,7 @@ const Hero = () => {
             <Button 
               size="lg" 
               className="bg-medical-blue hover:bg-medical-blue/90 text-white px-4 sm:px-6 lg:px-8 py-3 sm:py-4 text-sm sm:text-base lg:text-lg transition-all duration-200 hover:scale-105 animate-scale-in w-full sm:w-auto"
-              onClick={() => window.open("tel:+77012200036", "_self")}
+              onClick={onBookingClick}
             >
               <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
               Записаться на приём
