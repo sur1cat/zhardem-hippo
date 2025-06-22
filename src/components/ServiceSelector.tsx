@@ -1,9 +1,8 @@
-
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Phone, User, Clock } from "lucide-react";
-import type { Service } from "@/pages/Index";
+import type { Service } from "@/data/services";
 
 interface ServiceSelectorProps {
   open: boolean;

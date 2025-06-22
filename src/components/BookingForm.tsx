@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -10,7 +9,7 @@ import { Calendar as CalendarIcon, Clock, Phone, User } from "lucide-react";
 import { format } from "date-fns";
 import { ru } from "date-fns/locale";
 import { cn } from "@/lib/utils";
-import type { Service } from "@/pages/Index";
+import type { Service } from "@/data/services";
 
 interface BookingFormProps {
   open: boolean;

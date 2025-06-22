@@ -3,7 +3,7 @@ import { Clock, User, Star, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import type { Service } from "@/pages/Index";
+import type { Service } from "@/data/services";
 
 interface ServiceCardProps {
   service: Service;
