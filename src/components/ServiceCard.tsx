@@ -7,7 +7,7 @@ import type { Service } from "@/pages/Index";
 
 interface ServiceCardProps {
   service: Service;
-  onBookClick: () => void;
+  onBookClick: (service: Service) => void;
 }
 
 const ServiceCard = ({ service, onBookClick }: ServiceCardProps) => {
@@ -93,7 +93,7 @@ const ServiceCard = ({ service, onBookClick }: ServiceCardProps) => {
       
       <CardFooter className="mt-auto px-4 sm:px-6 pb-4 sm:pb-6">
         <Button 
-          onClick={onBookClick}
+          onClick={() => onBookClick(service)}
           className="w-full bg-medical-green hover:bg-medical-green/90 text-white transition-all duration-200 hover:scale-105 group-hover:shadow-lg text-sm sm:text-base py-2 sm:py-3"
           size="lg"
         >

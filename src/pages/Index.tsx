@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Heart, Clock, Phone, User, Calendar, MapPin, Star, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,7 +8,7 @@ import Hero from "@/components/Hero";
 import ServiceCard from "@/components/ServiceCard";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
-import BookingDialog from "@/components/BookingDialog";
+import BookingForm from "@/components/BookingForm";
 
 export interface Doctor {
   name: string;
@@ -228,7 +227,8 @@ const services: Service[] = [
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("Все");
-  const [isBookingDialogOpen, setIsBookingDialogOpen] = useState(false);
+  const [isBookingFormOpen, setIsBookingFormOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState<Service>();
   
   const categories = ["Все", ...Array.from(new Set(services.map(s => s.category)))];
   
@@ -236,14 +236,15 @@ const Index = () => {
     ? services 
     : services.filter(service => service.category === selectedCategory);
 
-  const handleBookingClick = () => {
-    setIsBookingDialogOpen(true);
+  const handleBookingClick = (service?: Service) => {
+    setSelectedService(service);
+    setIsBookingFormOpen(true);
   };
 
   return (
     <div className="min-h-screen">
       <Header />
-      <Hero onBookingClick={handleBookingClick} />
+      <Hero onBookingClick={() => handleBookingClick()} />
       
       {/* Services Section */}
       <section id="services" className="py-12 sm:py-16 px-4">
@@ -279,19 +280,20 @@ const Index = () => {
                 className="animate-fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <ServiceCard service={service} onBookClick={handleBookingClick} />
+                <ServiceCard service={service} onBookClick={() => handleBookingClick(service)} />
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <ContactSection onContactClick={handleBookingClick} />
+      <ContactSection onContactClick={() => handleBookingClick()} />
       <Footer />
       
-      <BookingDialog 
-        open={isBookingDialogOpen} 
-        onOpenChange={setIsBookingDialogOpen} 
+      <BookingForm 
+        open={isBookingFormOpen} 
+        onOpenChange={setIsBookingFormOpen}
+        service={selectedService}
       />
     </div>
   );
