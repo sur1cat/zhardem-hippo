@@ -9,6 +9,7 @@ import ServiceCard from "@/components/ServiceCard";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import BookingForm from "@/components/BookingForm";
+import ServiceSelector from "@/components/ServiceSelector";
 
 export interface Doctor {
   name: string;
@@ -228,6 +229,7 @@ const services: Service[] = [
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("Все");
   const [isBookingFormOpen, setIsBookingFormOpen] = useState(false);
+  const [isServiceSelectorOpen, setIsServiceSelectorOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<Service>();
   
   const categories = ["Все", ...Array.from(new Set(services.map(s => s.category)))];
@@ -237,6 +239,17 @@ const Index = () => {
     : services.filter(service => service.category === selectedCategory);
 
   const handleBookingClick = (service?: Service) => {
+    if (service) {
+      // Если услуга уже выбрана, сразу открываем форму записи
+      setSelectedService(service);
+      setIsBookingFormOpen(true);
+    } else {
+      // Если услуга не выбрана, открываем селектор услуг
+      setIsServiceSelectorOpen(true);
+    }
+  };
+
+  const handleServiceSelect = (service: Service) => {
     setSelectedService(service);
     setIsBookingFormOpen(true);
   };
@@ -289,6 +302,13 @@ const Index = () => {
 
       <ContactSection onContactClick={() => handleBookingClick()} />
       <Footer />
+      
+      <ServiceSelector
+        open={isServiceSelectorOpen}
+        onOpenChange={setIsServiceSelectorOpen}
+        services={services}
+        onServiceSelect={handleServiceSelect}
+      />
       
       <BookingForm 
         open={isBookingFormOpen} 
