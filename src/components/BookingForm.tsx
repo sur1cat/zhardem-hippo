@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -112,7 +113,7 @@ const BookingForm = ({ open, onOpenChange, service }: BookingFormProps) => {
             <Label className="text-sm font-medium text-gray-700">
               Дата приёма
             </Label>
-            <Popover>
+            <Popover modal={true}>
               <PopoverTrigger asChild>
                 <Button
                   variant="outline"
@@ -120,19 +121,25 @@ const BookingForm = ({ open, onOpenChange, service }: BookingFormProps) => {
                     "w-full justify-start text-left font-normal",
                     !selectedDate && "text-muted-foreground"
                   )}
+                  type="button"
                 >
                   <CalendarIcon className="mr-2 h-4 w-4" />
                   {selectedDate ? format(selectedDate, "dd MMMM yyyy", { locale: ru }) : "Выберите дату"}
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-auto p-0 bg-white border shadow-lg z-50" align="start">
+              <PopoverContent 
+                className="w-auto p-0 bg-white border shadow-lg z-[100]" 
+                align="start"
+                side="bottom"
+                sideOffset={4}
+              >
                 <Calendar
                   mode="single"
                   selected={selectedDate}
                   onSelect={setSelectedDate}
-                  disabled={(date) => date < new Date() || date.getDay() === 0} // Отключить прошедшие даты и воскресенье
+                  disabled={(date) => date < new Date() || date.getDay() === 0}
                   initialFocus
-                  className="p-3 pointer-events-auto bg-white"
+                  className="p-3 pointer-events-auto bg-white rounded-md"
                 />
               </PopoverContent>
             </Popover>
