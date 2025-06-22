@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Heart, Clock, Phone, User, Calendar, MapPin, Star, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -227,16 +228,9 @@ const services: Service[] = [
 ];
 
 const Index = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>("Все");
   const [isBookingFormOpen, setIsBookingFormOpen] = useState(false);
   const [isServiceSelectorOpen, setIsServiceSelectorOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<Service>();
-  
-  const categories = ["Все", ...Array.from(new Set(services.map(s => s.category)))];
-  
-  const filteredServices = selectedCategory === "Все" 
-    ? services 
-    : services.filter(service => service.category === selectedCategory);
 
   const handleBookingClick = (service?: Service) => {
     if (service) {
@@ -269,25 +263,11 @@ const Index = () => {
             <p className="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8 px-4">
               Квалифицированные специалисты с учеными степенями готовы помочь вам
             </p>
-            
-            {/* Category Filter */}
-            <div className="flex flex-wrap justify-center gap-2 mb-6 sm:mb-8 px-4">
-              {categories.map((category) => (
-                <Button
-                  key={category}
-                  variant={selectedCategory === category ? "default" : "outline"}
-                  onClick={() => setSelectedCategory(category)}
-                  className="rounded-full transition-all duration-200 hover:scale-105 text-sm sm:text-base px-3 sm:px-4 py-2"
-                >
-                  {category}
-                </Button>
-              ))}
-            </div>
           </div>
 
           {/* Services Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 auto-rows-fr">
-            {filteredServices.map((service, index) => (
+            {services.map((service, index) => (
               <div
                 key={service.id}
                 className="animate-fade-in"

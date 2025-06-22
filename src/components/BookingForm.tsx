@@ -126,14 +126,14 @@ const BookingForm = ({ open, onOpenChange, service }: BookingFormProps) => {
                   {selectedDate ? format(selectedDate, "dd MMMM yyyy", { locale: ru }) : "Выберите дату"}
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="start">
+              <PopoverContent className="w-auto p-0 bg-white border shadow-lg z-50" align="start">
                 <Calendar
                   mode="single"
                   selected={selectedDate}
                   onSelect={setSelectedDate}
                   disabled={(date) => date < new Date() || date.getDay() === 0} // Отключить прошедшие даты и воскресенье
                   initialFocus
-                  className="pointer-events-auto"
+                  className="p-3 pointer-events-auto bg-white"
                 />
               </PopoverContent>
             </Popover>
