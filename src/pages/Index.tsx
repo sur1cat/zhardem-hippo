@@ -106,7 +106,7 @@ const Index = () => {
 
           if (!servicesMap.has(specialization)) {
             servicesMap.set(specialization, {
-              id: specialization.toLowerCase().replace(/\s+/g, '-'),
+              id: `service-${specialization.toLowerCase().replace(/\s+/g, '-')}`, // Генерируем ID услуги
               title: specialization,
               price: price,
               category: getCategoryFromSpecialization(specialization),

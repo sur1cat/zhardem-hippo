@@ -71,47 +71,15 @@ export const useApiBooking = () => {
     setTimeSlots(slots);
   };
 
-  const getServiceIdForDoctor = async (doctorId: string): Promise<string | null> => {
-    try {
-      console.log('Получаем услуги для врача:', doctorId);
-      const services = await appointmentApi.getDoctorServices(doctorId);
-      console.log('Полученные услуги врача:', services);
-      
-      if (services.length > 0) {
-        console.log('Возвращаем ID услуги:', services[0].id);
-        return services[0].id;
-      }
-      
-      console.log('У врача нет услуг');
-      return null;
-    } catch (error) {
-      console.error('Ошибка при получении услуг врача:', error);
-      return null;
-    }
-  };
-
-  const createAppointment = async (appointmentData: Omit<AppointmentData, 'service_id' | 'clinic_id'>) => {
+  const createAppointment = async (appointmentData: AppointmentData) => {
     if (!selectedDoctor) {
       throw new Error('Врач не выбран');
     }
 
     console.log('Создание записи для врача:', selectedDoctor.id);
-    const serviceId = await getServiceIdForDoctor(selectedDoctor.id);
+    console.log('Отправляем данные записи:', appointmentData);
     
-    if (!serviceId) {
-      throw new Error('Не удалось получить ID услуги для выбранного врача');
-    }
-
-    console.log('Полученный serviceId:', serviceId);
-
-    const fullAppointmentData: AppointmentData = {
-      ...appointmentData,
-      service_id: serviceId,
-      clinic_id: appointmentApi.getClinicId()
-    };
-
-    console.log('Отправляем данные записи:', fullAppointmentData);
-    return appointmentApi.createAppointment(fullAppointmentData);
+    return appointmentApi.createAppointment(appointmentData);
   };
 
   return {

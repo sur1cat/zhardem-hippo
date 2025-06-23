@@ -79,7 +79,7 @@ const BookingForm = ({ open, onOpenChange, service }: BookingFormProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!selectedDoctor || !selectedDate || !selectedTime) {
+    if (!selectedDoctor || !selectedDate || !selectedTime || !service) {
       setError('Заполните все обязательные поля');
       return;
     }
@@ -90,7 +90,9 @@ const BookingForm = ({ open, onOpenChange, service }: BookingFormProps) => {
 
       const appointmentData = {
         doctor_id: selectedDoctor.id,
+        service_id: service.id, // Используем ID из выбранной услуги
         user_phone_number: phone,
+        clinic_id: appointmentApi.getClinicId(),
         datetime: new Date(`${selectedDate.toISOString().split('T')[0]}T${selectedTime}:00.000Z`).toISOString(),
         user_first_name: fullName,
         user_iin: iin
