@@ -73,10 +73,19 @@ export const useApiBooking = () => {
 
   const getServiceIdForDoctor = async (doctorId: string): Promise<string | null> => {
     try {
+      console.log('Получаем услуги для врача:', doctorId);
       const services = await appointmentApi.getDoctorServices(doctorId);
-      return services.length > 0 ? services[0].id : null;
+      console.log('Полученные услуги врача:', services);
+      
+      if (services.length > 0) {
+        console.log('Возвращаем ID услуги:', services[0].id);
+        return services[0].id;
+      }
+      
+      console.log('У врача нет услуг');
+      return null;
     } catch (error) {
-      console.error('Error getting service ID:', error);
+      console.error('Ошибка при получении услуг врача:', error);
       return null;
     }
   };
@@ -86,10 +95,14 @@ export const useApiBooking = () => {
       throw new Error('Врач не выбран');
     }
 
+    console.log('Создание записи для врача:', selectedDoctor.id);
     const serviceId = await getServiceIdForDoctor(selectedDoctor.id);
+    
     if (!serviceId) {
-      throw new Error('Не удалось получить ID услуги');
+      throw new Error('Не удалось получить ID услуги для выбранного врача');
     }
+
+    console.log('Полученный serviceId:', serviceId);
 
     const fullAppointmentData: AppointmentData = {
       ...appointmentData,
@@ -97,6 +110,7 @@ export const useApiBooking = () => {
       clinic_id: appointmentApi.getClinicId()
     };
 
+    console.log('Отправляем данные записи:', fullAppointmentData);
     return appointmentApi.createAppointment(fullAppointmentData);
   };
 
