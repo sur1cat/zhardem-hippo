@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
@@ -77,6 +76,15 @@ const getCategoryFromSpecialization = (specialization: string): string => {
   return 'Другие специальности';
 };
 
+// Функция для генерации UUID v4
+const generateUUID = (): string => {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    const r = Math.random() * 16 | 0;
+    const v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+};
+
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("Все");
   const [isBookingFormOpen, setIsBookingFormOpen] = useState(false);
@@ -106,7 +114,7 @@ const Index = () => {
 
           if (!servicesMap.has(specialization)) {
             servicesMap.set(specialization, {
-              id: `service-${specialization.toLowerCase().replace(/\s+/g, '-')}`, // Генерируем ID услуги
+              id: generateUUID(), // Генерируем валидный UUID
               title: specialization,
               price: price,
               category: getCategoryFromSpecialization(specialization),
